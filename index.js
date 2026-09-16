@@ -47,3 +47,12 @@ const honapok = [{
     evszak: "Tél",
     napok: 31
 }]
+
+function honapadatai(){
+    let honapinput = document.getElementById("honapInput").value;
+    honapok.map((honap) => {
+        if(honapinput == honap.indexOf(honap)){
+            
+        }
+    })
+}
