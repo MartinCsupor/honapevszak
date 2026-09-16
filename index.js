@@ -63,8 +63,10 @@ function honapadatai(){
         }
         adatok = honapok[honapinput -1]
         output.textContent = `${honapinput} Hónap: ${adatok.nev} Évszak: ${adatok.evszak} Napok száma: ${adatok.napok}`;
+        console.log(`${honapinput} Hónap: ${adatok.nev} Évszak: ${adatok.evszak} Napok száma: ${adatok.napok}`);
     }
     catch (error) {
         output.textContent = `${honapinput} Hiba: ${error.message}`
+        console.log(`${honapinput} Hiba: ${error.message}`)
     }
 }
