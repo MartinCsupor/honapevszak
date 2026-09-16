@@ -52,8 +52,7 @@ let output = document.getElementById("output");
 
 function honapadatai(){
     let honapinput = document.getElementById("honapInput").value;
-
-    let adatok;
+    
     try {
         if (honapinput < 1 || honapinput > 12) {
             throw new Error("A hónapszámnak 1 és 12 közé kell esnie!");
@@ -61,12 +60,16 @@ function honapadatai(){
         else if (isNaN(honapinput)) {
             throw new Error("A hónapszámnak számnak kell lennie!");
         }
-        adatok = honapok[honapinput -1]
+        adatok = honapkeres(honapinput)
         output.textContent = `${honapinput} Hónap: ${adatok.nev} Évszak: ${adatok.evszak} Napok száma: ${adatok.napok}`;
         console.log(`${honapinput} Hónap: ${adatok.nev} Évszak: ${adatok.evszak} Napok száma: ${adatok.napok}`);
-    }
+        }
     catch (error) {
-        output.textContent = `${honapinput} Hiba: ${error.message}`
-        console.log(`${honapinput} Hiba: ${error.message}`)
+        output.textContent = error;
+        console.log(error.message);
     }
+}   
+
+function honapkeres(honapinput) {
+    return honapok[honapinput -1]
 }
