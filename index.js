@@ -48,11 +48,11 @@ const honapok = [{
     napok: 31
 }]
 
+let output = document.getElementById("output");
+
 function honapadatai(){
     let honapinput = document.getElementById("honapInput").value;
-    honapok.map((honap) => {
-        if(honapinput == honap.indexOf(honap)){
-            
-        }
-    })
+    let adatok = honapok[honapinput -1]
+
+    output.textContent = `${honapinput} Hónap: ${adatok.nev} Évszak: ${adatok.evszak} Napok száma: ${adatok.napok}`;
 }
