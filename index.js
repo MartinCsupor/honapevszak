@@ -59,19 +59,24 @@ const honapok = [{
     evszak: "Tél",
     napok: 31
 }]
+const regex = /^[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű ]+$/;
 
 let output = document.getElementById("output");
+
+function szamCheck(honapinput){
+     if (honapinput < 1 || honapinput > 12) {
+        throw new Error("A hónapszámnak 1 és 12 közé kell esnie!");
+    }
+    else if (isNaN(honapinput)) {
+        throw new Error("A hónapszámnak számnak kell lennie!");
+    }
+}
 
 function honapadatai(){
     let honapinput = document.getElementById("honapInput").value;
     
     try {
-        if (honapinput < 1 || honapinput > 12) {
-            throw new Error("A hónapszámnak 1 és 12 közé kell esnie!");
-        }
-        else if (isNaN(honapinput)) {
-            throw new Error("A hónapszámnak számnak kell lennie!");
-        }
+        szamCheck(honapinput)
         adatok = honapkeres(honapinput)
         output.textContent = `${honapinput} Hónap: ${adatok.nev} - ${adatok.unnep ? adatok.unnep : "Nincs ünnep"} Évszak: ${adatok.evszak} Napok száma: ${adatok.napok}`;
         console.log(`${honapinput} Hónap: ${adatok.nev} - ${adatok.unnep ? adatok.unnep : "Nincs ünnep"} Évszak: ${adatok.evszak} Napok száma: ${adatok.napok}`);
@@ -86,9 +91,6 @@ function honapadatai(){
 function honapkeres(honapinput) {
     return honapok[honapinput -1]
 }
-
-//modositas gomb atvisz masik oldalra melyik honaphoz, 4 kulcserteket lehet megvaltoztatni
-
 
 let honapInput = document.getElementById("honapInput")
 let kivalasztoGomb = document.getElementById("kivalasztoGomb")
@@ -106,12 +108,7 @@ function honapKivalaszt() {
     const honapSzam = document.getElementById("honapInput").value;
 
     try {
-        if (isNaN(honapSzam)) {
-            throw new Error("A hónapszámnak számnak kell lennie!");
-        }
-        if (honapSzam < 1 || honapSzam > 12) {
-            throw new Error("A hónapszámnak 1 és 12 közé kell esnie!");
-        }
+        szamCheck(honapSzam)
         kivalasztasError.textContent = "";
 
         honapInput.style.display = "none";
@@ -128,13 +125,21 @@ function honapKivalaszt() {
 
 function unnepModositas() {
     const unnepSzoveg = unnepInput.value;
+    unnepSzoveg.trim();
     const honapSzam = document.getElementById("honapInput").value;
    
     try {
+        if (!regex.test(unnepSzoveg) || unnepSzoveg.length === 0){
+            throw new Error("Az ünnep csak szöveg lehet")
+        }
         const honap = honapkeres(honapSzam);
         honap.unnep = unnepSzoveg;
+        modositasError.style.display = "none";
+        sikeresModositas.style.display = "block"
         sikeresModositas.textContent = `${honapSzam} Hónap: ${honap.nev} - ${honap.unnep ? honap.unnep : "Nincs ünnep"} Évszak: ${honap.evszak} Napok száma: ${honap.napok}`;
     } catch (error) {
         modositasError.textContent = error.message;
+        modositasError.style.display = "block";
+        sikeresModositas.style.display = "none"
     }
 }

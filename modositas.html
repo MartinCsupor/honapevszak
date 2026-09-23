@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Módosítás</title>
 </head>
-<body>
-     
-    <input type="text" id="honapInput">
-    <button id="kivalasztoGomb" onclick="honapKivalaszt()">Kiválaszt</button>
+<body class="min-h-screen bg-gray-100 flex flex-col items-center justify-center gap-4 p-6">
 
-    <p id="kivalasztasError"></p>
+    <p class="text-2xl font-semibold text-gray-800 mb-4">Ünnep megváltoztatása</p>
+    <input type="text" id="honapInput" class="w-64 rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700">
+    <button id="kivalasztoGomb" onclick="honapKivalaszt()" class="rounded-lg bg-blue-600 px-5 py-2 font-medium text-white">Kiválaszt</button>
+    <p id="kivalasztasError" class="text-base font-medium text-red-600"></p>
 
-    <input type="text" id="unnepInput">
-    <button id="modositGomb" onclick="unnepModositas()">Módosít</button>
+    <input type="text" id="unnepInput" class="w-64 rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700">
+    <button id="modositGomb" onclick="unnepModositas()" class="rounded-lg bg-green-600 px-5 py-2 font-medium text-white">Módosít</button>
+    <p id="sikeresModositas" class="text-base font-medium text-green-600"></p>
+    <p id="modositasError" class="text-base font-medium text-red-600"></p>
 
-    <p id="sikeresModositas"></p>
-    <p id="modositasError"></p>
-
-    <button onclick="window.location.href='/'">Vissza a főoldara</button>
+    <button onclick="window.location.href='/'" class="rounded-lg bg-gray-600 px-5 py-2 font-medium text-white">Vissza a főoldara</button>
 
     <script src="index.js"></script>
 </body>

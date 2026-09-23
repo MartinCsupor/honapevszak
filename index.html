@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Hónapok és évszak</title>
 </head>
-<body>
+<body class="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
 
-    <p>Adj meg egy hónapszámot (1-12):</p>
-    <input type="text" min="1" max="12" id="honapInput" oninput="honapadatai()" />
-    <p id="output"></p>
+    <p class="text-2xl font-semibold text-gray-800 mb-4">Adj meg egy hónapszámot (1-12):</p>
+    <input class="px-4 py-3 border border-gray-300 rounded-lg mb-4" type="text" min="1" max="12" id="honapInput" oninput="honapadatai()" />
+    <p class="text-lg font-medium text-blue-600" id="output"></p>
 
-    <button onclick="window.location.href=`modositas.html`">Módosítás</button>
+    <button class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg" onclick="window.location.href=`modositas.html`" >Módosítás</button>
 
     <script src="index.js"></script>
 </body>
