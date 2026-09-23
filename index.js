@@ -62,6 +62,7 @@ const honapok = [{
 const regex = /^[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű ]+$/;
 
 let output = document.getElementById("output");
+let outputError = document.getElementById("outputError");
 
 function szamCheck(honapinput){
      if (honapinput < 1 || honapinput > 12) {
@@ -78,11 +79,13 @@ function honapadatai(){
     try {
         szamCheck(honapinput)
         adatok = honapkeres(honapinput)
+        outputError.textContent = ""
         output.textContent = `${honapinput} Hónap: ${adatok.nev} - ${adatok.unnep ? adatok.unnep : "Nincs ünnep"} Évszak: ${adatok.evszak} Napok száma: ${adatok.napok}`;
         console.log(`${honapinput} Hónap: ${adatok.nev} - ${adatok.unnep ? adatok.unnep : "Nincs ünnep"} Évszak: ${adatok.evszak} Napok száma: ${adatok.napok}`);
         }
     catch (error) {
-        output.textContent = error;
+        output.textContent = "";
+        outputError.textContent = error.message
         console.log(error.message);
         document.getElementById("honapInput").value = "";
     }
